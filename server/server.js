@@ -14,12 +14,13 @@ exports.init = function(){
     
     app.use(session({
       genid: function(req) {
+        // needs guid method // ask Franci
         return 'uniquevalue123'
       },
       secret: 'kjashd8p012i;eo0u912hew90932rkfje'
     }));
 
-
+    require('./user-routes')(app);
     
     app.listen(3000, function(){
        

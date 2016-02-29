@@ -9,8 +9,22 @@ module.exports = function(app){
         // get user information stored into the session
         var user = req.session.user;
         
+        if(req.session.user){
+            // user is logged in
+            console.log(req.session.user);
+        }
         
         res.send(user);
+        
+    });
+    
+    app.get('/only-admin', function(req, res){
+       
+        if(req.session.user){
+            res.send('You are cool: ', req.session.user);
+        }else{
+            res.sendStatus(401);
+        }
         
     });
     
@@ -55,7 +69,7 @@ module.exports = function(app){
         var User = mongoose.model('User');
         
         // search for the user using the email address
-        User.findOne({ email:userData.email }, function(err, userDoc){
+        User.findOne({ email : userData.email }, function(err, userDoc){
            
             // is there an error?
             if(!err){

@@ -4,7 +4,8 @@ var schema = mongoose.Schema({
    
     email : { type:String, unique:true } ,
     password : String,
-    cratedOn : { type:Date, default:Date.now }
+    cratedOn : { type:Date, default:Date.now },
+    type    : String
     
 });
 
